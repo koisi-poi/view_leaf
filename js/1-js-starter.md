@@ -70,12 +70,12 @@ var koi = new Koi(args)
 koi instanceof Koi → true
 ```
 ### prototype (理解: shared，static 区域)
-- IClass 构造函数
+- IClass 构造函数 显式
   - `prototype`: 0x1122 → 原型对象
-- IClass 实例对象
+- IClass 实例对象 隐式
   - `__proto__`: 0x1122 → 原型对象
 - 原型对象也可以有原型，Object对象的原型是 null
-- 先到当前对象下找prop，没有再一级一级找原型里面有没有该prop
+- 先到当前对象下找prop，没有再一级一级找原型里面有没有该prop (原型链)
   - `prop in obj` 原型内有也算 true
   - `hasOwnPropery("prop")` 原型内才有的不算
 
@@ -192,5 +192,6 @@ arr.forEach( function( el, index, arr){
   - href目标是一个js，其内容为空。
 
 - 定时 & 延时
-  - setInterval(func,ms)
+  - var id = setInterval(func,ms)
+    - clearInterval(id)
   - setTimeout(func,ms)
