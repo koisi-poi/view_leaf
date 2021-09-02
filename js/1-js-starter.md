@@ -47,6 +47,12 @@ parseInt("1080px")
   - `NaN == NaN → false`
   - `isNaN(v)`
 
+## 正则 regx
+- `var regx_obj = new RegExp("regx_str","mod")`
+- `var regx_obj = /regx_str/i`
+- mod: i 忽略大小写； g 全局
+- 使用: `regx_obj.test(str)`
+
 ## 对象
 ```js
 // 枚举属性
@@ -140,7 +146,51 @@ arr.forEach( function( el, index, arr){
 })
 ```
 
+## 事件 event
+- 事件触发时，回调函数的第一个参数是 event
+### 事件捕获 & 冒泡
+- 先从外层捕获，再冒泡出来
+- 默认是冒泡时触发
+- 内外是html树的结构，跟视图位置无关
+![picture 1](https://p1.kodo-oss.dronekumo.xyz/1c9168f10d3cec81e1bd666dc349354848f3454f74be18fe8e8736944a078006.png)  
+![picture 2](https://p1.kodo-oss.dronekumo.xyz/d6cda5ed9f92cbd49530777ddb93e10edfde950ac617ef3e36125af735f43f0d.png)  
+![picture 3](https://p1.kodo-oss.dronekumo.xyz/fa4c93d65b926c44f8792c74f08251c0a534f4ed39606b55969ea3b88ff39f9b.png)  
+
+### 事件委派
+- 利用事件的冒泡，将事件绑定至共同的父元素上。减少重复的绑定，还能提高性能。
+
+### 事件绑定
+- `el.event(eg: onclick) = ()=>{...}` 只能绑定一个
+- `el.addEventListener("click",()=>{...},bool: 是否在捕获阶段触发)`可以添加多个
+
+# BOM
+- window
+  - 当前网页
+
+- Navigator
+  - 浏览器信息，如版本、内核、客户端类型
+  - 一般只用 navigator.userAgent
+
+- Location
+  - 获取地址栏信息，或者做页面跳转
+
+- History
+  - 只能操作前进后退
+
+- Screen
+  - 用得少。移动端稍微多点，用于获取屏幕分辨率。
+
+# DOM
+- document == window.document
+
 # Tips
 - js基本写在html最下面
   - 避免影响web加载速度
   - 确保脚本要引用的元素已经加载完毕
+
+- href="javascript:;"
+  - href目标是一个js，其内容为空。
+
+- 定时 & 延时
+  - setInterval(func,ms)
+  - setTimeout(func,ms)
