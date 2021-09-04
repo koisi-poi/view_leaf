@@ -16,6 +16,24 @@
 - **Mode** development production
 - `webpack.config.js` 即 配置这5个东西
 
+## 性能优化
+- 开发环境
+  - 打包速度
+- 生产环境
+  - 打包速度
+  - 性能
+
+### hmr 热模块替换
+- devServer.hot true
+
+### 多进程
+- thread-loader
+- 长时间任务才有用，创建进程、同步也都要时间
+
+### webpack.DllPlugin
+
+... todo 待补充
+
 # 操作记录
 ```shell
 npm init
