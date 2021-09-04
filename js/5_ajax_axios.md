@@ -43,27 +43,6 @@ $('#id').eq(0).click( ()=>{
     })
 })
 ```
-### axios
-```js
-axios.default.baseURL = 'endpoint_url'
-el.event = ()=>{
-    axios.post( '/api..', {
-        params:   {...},  // get
-        data:     {...},  // post
-        hearders: {...}
-    }).then( res => {...} )
-}
-
-el.event = ()=>{
-    axios({
-        url:      '...',
-        params:   {...},
-        data:     {...},
-        hearders: {...},
-        method:   'GET',
-    }).then( res => {...} )
-}
-```
 
 ## 同源策略
 - 同源: 协议、域名、端口， 三者都必须协同。
@@ -89,3 +68,42 @@ $('#id').eq(0).click( ()=>{
 - `Access-Control-Allow-Origin:  *`
 - `Access-Control-Allow-Methods: *`
 - `Access-Control-Allow-Headers: *`
+
+# axios
+- 一个 ajax 请求库
+```js
+axios.default.baseURL = 'endpoint_url'
+el.event = ()=>{
+    axios.post( '/api..', {
+        params:   {...},  // get
+        data:     {...},  // post
+        hearders: {...}
+    }).then( res => {...} )
+}
+
+el.event = ()=>{
+    axios({
+        url:      '...',
+        params:   {...},
+        data:     {...},
+        hearders: {...},
+        method:   'GET',
+    }).then( res => {...} )
+}
+
+// 拦截器
+axios.interceptors.request.use(function (config) {
+    ...
+    throw 'error'
+    return config;
+  }, function (error) {
+    ...
+    return Promise.reject(error);
+  });
+
+axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    return Promise.reject(error);
+  });
+```
