@@ -30,3 +30,6 @@
 ## 筛选 (过滤、查找)
 ![picture 2](https://p1.kodo-oss.dronekumo.xyz/24a8b6542b54ef806c809b49bf7df13bc15dba9d05dca1de68dc4819fb4529d1.png)  
 
+## 事件委托/代理
+![picture 3](https://p1.kodo-oss.dronekumo.xyz/fa89772528fc0b61a4752ececfc4861bc3db1ac4b81cc5ea351fb777d38bd686.png)
+- func 里面的 this 将是触发事件的子元素，即 event.target
