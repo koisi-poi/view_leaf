@@ -199,3 +199,5 @@ arr.forEach( function( el, index, arr){
   - var id = setInterval(func,ms)
     - clearInterval(id)
   - setTimeout(func,ms)
+
+- babeljs.cn 自动转换兼容代码
