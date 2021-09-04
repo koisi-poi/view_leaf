@@ -11,6 +11,7 @@
 */
 
 import './index.css'
+import './index.less'
 
 import data from './data.json'
 console.log(data)

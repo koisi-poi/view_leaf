@@ -14,6 +14,7 @@
 - **Loader** 处理 非js 文件
 - **Plugins** 如优化、压缩
 - **Mode** development production
+- `webpack.config.js` 即 配置这5个东西
 
 # 操作记录
 ```shell
@@ -23,7 +24,7 @@ npm install jquery
 npm install webpack webpack-cli --save-dev
 npx webpack ./src/index.js -o ./build --mode=production
 
-npm i css-loader style-loader --save-dev
+npm i css-loader style-loader less less-loader --save-dev
 # with webpack.config.js
 npx webpack 
 ```
