@@ -22,4 +22,8 @@ npm config set registry http://registry.npm.taobao.org
 npm install jquery
 npm install webpack webpack-cli --save-dev
 npx webpack ./src/index.js -o ./build --mode=production
+
+npm i css-loader style-loader --save-dev
+# with webpack.config.js
+npx webpack 
 ```
