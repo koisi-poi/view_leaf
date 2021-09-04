@@ -101,6 +101,10 @@ koi instanceof Koi → true
     })(args);
 // method 即 对象的成员函数
 ```
+### 重载
+- js没有重载，本质都是 func(args[])
+- 如果定义了一个新的同名函数，则会覆盖前面定义的
+- 非要实现的话，可以在方法体内，根据 `arguments.length` 来执行
 ### call & apply
 - `fun.call(obj, arg1, arg2, ...)` this → obj
 - `fun.apply(obj, [args])` this → obj
