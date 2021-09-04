@@ -5,10 +5,21 @@
 - 前端资源构建工具 build → dist
 - 静态模块打包器 module bundler
 
+## 打包
+- `main(index.js)` → `[ ...js, ...less]` → chunk → `bundle`
+
+## 五个核心概念
+- **Entry** `main(index.js)`
+- **Output**
+- **Loader** 处理 非js 文件
+- **Plugins** 如优化、压缩
+- **Mode** development production
+
 # 操作记录
 ```shell
 npm init
 npm config set registry http://registry.npm.taobao.org
-npm install jquer
-y
+npm install jquery
+npm install webpack webpack-cli --save-dev
+npx webpack ./src/index.js -o ./build --mode=production
 ```
