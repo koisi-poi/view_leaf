@@ -6,4 +6,5 @@
 vcs.xml
 workspace.xml
 modules.xml
-
+.idea
+.idea/
