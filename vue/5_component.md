@@ -16,6 +16,7 @@
 ```js
 <template>
   <div>
+    <slot>默认值，如果上层调用者没有传递内容</slot>
     <Vc></Vc>
     ...
   </div>
@@ -120,6 +121,19 @@ export default {
   }
 }
 ```
+
+# 插槽 slot
+## 默认插槽
+- `<slot></slot>`
+## 具名插槽
+- 即 支持多个插槽
+- `<el slot="key"></el>`
+- `<template slot="key"></template>`
+- `<template v-slot:key></template>`
+- `<slot name="key"></slot>`
+## 作用域插槽
+- `<template scoped="todos" slot="key"></template>`
+- `<slot :todos="todos" name="key"></slot>`
 
 # 组件间通信 
 ## 全局事件总线

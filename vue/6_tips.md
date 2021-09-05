@@ -15,4 +15,23 @@ export default {
 1. 把数据放给共同的父节点(以`props`传递)
    - 子节点传数据给父节点: 父节点要将一个 receive 方法以props 的方式传给这个子节点(如果目标是对象，直接传引用也可以，但是不建议，设计上props应该是只读的)
 
-## 代理
+## 跨域 & 代理
+- `nginx`
+- `vue-cli` [https://cli.vuejs.org/zh/config/#devserver-proxy]
+  ```js
+  // vue.config.js
+  module.exports = {
+    devServer: {
+      proxy: {
+        '/api': {
+          target: '<url>', // proxy_pass in nginx
+          ws: true,
+          changeOrigin: true
+        },
+        '/foo': {
+          target: '<other_url>'
+        }
+      }
+    }
+  }
+  ```
