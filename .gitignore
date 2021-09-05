@@ -13,4 +13,3 @@ modules.xml
 *node_modules/
 *package-lock.json
 *build/
-*public/
