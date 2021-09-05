@@ -137,6 +137,7 @@ export default {
 
 # 组件间通信 
 ## 全局事件总线
+- 这个还是比较繁琐的，不推荐
 ```js
 // 安装全局事件总线
 BusPoi = Vue.extend({})
@@ -163,6 +164,7 @@ this.subId = pubsub.subscribe('topic',(topic,data)=>{...})
 pubsub.publish('topic', data)
 pubsub.unsubscribe(this.subId)
 ```
+## 见 vuex
 
 # mixin 共享/混合 Vue实例配置
 ```js
