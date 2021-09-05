@@ -49,4 +49,6 @@ npm install # 根据 package.json 自动下载依赖
 npm install/i [-g] [--save] [pkg]
 npm remove/r  [-g] [--save] [pkg]
 node path/file.js
+
+npm view [pkg] versions
 ```
