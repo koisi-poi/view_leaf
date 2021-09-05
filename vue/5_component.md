@@ -64,7 +64,7 @@ new Vue({
 
 ## props `<el [...props]>..</el>`
 - 如果值要是数字 `:prop`  `<el name="koisi" :age=16 >..</el>`
-- `props` 是只读的
+- `props` 是只读的(如果是对象，是可以改成员的)
 ```html
 <script>
   export default {
@@ -85,6 +85,69 @@ new Vue({
     }
   }
 </script>
+```
+
+## $emit & 自定义事件
+- 子组件 `$emit` → 父组件
+- 禁用目标事件的 emit
+  - `this.$off('eventInPoi')` 
+  - `this.$off([...])` 
+  - `this.$off()` 禁用全部
+- 组件使用原生事件 `<Poi @click.native="funcInParent" />`
+```js
+// 对比 props:
+// <Poi :propToPoi="funcInParent" />
+<Poi v-on:eventInPoi="funcInParent" />
+<Poi @eventInPoi.once="funcInParent" />
+// Poi.vue
+export default {
+  ...
+  methods: {
+    func(){
+      this.$emit('eventInPoi', ...args)
+    }
+  }
+}
+
+// 也可以不写 <Poi v-on:eventInPoi="funcInParent" />
+<Poi ref='poi' />
+// 在 Parent 里面写
+{ 
+  ...
+  mounted(){ 
+    this.$refs.poi.$once('eventInPoi', funcInParent)
+    //this.$refs.poi.$on('eventInPoi', funcInParent)
+  }
+}
+```
+
+# 组件间通信 
+## 全局事件总线
+```js
+// 安装全局事件总线
+BusPoi = Vue.extend({})
+Vue.prototype.$bus = new BusPoi()
+// or
+new Vue({
+  ...
+  beforeCreate(){
+    Vue.prototype.$bus = this
+  }
+})
+
+this.$bus.$emit('event', ...args)
+this.$bus.$on('event', (...args)=>{...})
+// 这里的自定义事件不会随组件销毁而解绑
+// 如果有需要，得自行通过 销毁钩子 来解绑 $off
+```
+## 消息订阅与发布 (推荐)
+- 第三方库 `pubsub.js`
+```js
+import pubsub from 'pubsub-js'
+
+this.subId = pubsub.subscribe('topic',(topic,data)=>{...})
+pubsub.publish('topic', data)
+pubsub.unsubscribe(this.subId)
 ```
 
 # mixin 共享/混合 Vue实例配置
