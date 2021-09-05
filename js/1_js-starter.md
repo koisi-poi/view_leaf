@@ -201,3 +201,8 @@ arr.forEach( function( el, index, arr){
   - setTimeout(func,ms)
 
 - babeljs.cn 自动转换兼容代码
+
+- `==` `===`
+  - `===` 严格相同，类型相同，值也相同
+  - `==` 类型转换后，值相同也为 true
+    - 这些是 true: `"1" == 1` `true == 1`
