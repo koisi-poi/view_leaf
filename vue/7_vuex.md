@@ -19,61 +19,64 @@
   - `-s: --save` `-D: --save-dev`
 - `Vue.use(Vuex)`
   - 使Vue实例具备属性 `store` `$store`
-- `{home}/src/store/index.js`
-  ```js
-  import Vue from 'vue'
-  import Vuex from 'vuex'
 
-  Vue.use(Vuex)
+### 示例
+#### `{home}/src/store/index.js`
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-  const atctions  = {
-    // ctx 是一个 mini-store
-    funcInAct( context, ...args){
-      context.commint('MUT', ..args)
-    }
-  }
-  const mutations = {
-    // 习惯上，方法名全大写
-    // 当然，不通过 mutations, 直接在 Vc 操作 state 也可以
-    MUT( state, ..args){
-      操作: state.shared
-    }
-  }
-  const state     = {
-    shared: ...,
-  }
-  // store 的 computed 属性
-  // {{ $store.getters.cop }}
-  const getters = {
-    cop(shared){ ... }
-  }
+Vue.use(Vuex)
 
-  // 对象属性名和值相同，可以简写
-  export default new Vue.store({
-    atctions,
-    mutations,
-    state
-  })
-  ```
+const atctions  = {
+  // ctx 是一个 mini-store
+  funcInAct( context, ...args){
+    context.commint('MUT', ..args)
+  }
+}
+const mutations = {
+  // 习惯上，方法名全大写
+  // 当然，不通过 mutations, 直接在 Vc 操作 state 也可以
+  MUT( state, ..args){
+    操作: state.shared
+  }
+}
+const state     = {
+  shared: ...,
+}
+// store 的 computed 属性
+// {{ $store.getters.cop }}
+const getters = {
+  cop(shared){ ... }
+}
+
+// 对象属性名和值相同，可以简写
+export default new Vue.store({
+  atctions,
+  mutations,
+  state
+})
+```
+#### `main.js`
 - 在入口文件配置，即可使所有组件都获得`$store`
-  ```js
-  {{ $store.state.shared }}
-  // App.vue
+```js
+{{ $store.state.shared }}
+// App.vue
 
-  // Vc.Vue
-  export default {
-    data: {},
-    methods: {
-      funcA(){
-        this.$store.dispatch( "funcInAct", ...args)
-      },
-      funcB(){
-        this.$store.commit( "MUT", ...args)
-      }
+// Vc.Vue
+export default {
+  data: {},
+  methods: {
+    funcA(){
+      this.$store.dispatch( "funcInAct", ...args)
+    },
+    funcB(){
+      this.$store.commit( "MUT", ...args)
     }
-
   }
-  ```
+
+}
+```
 
 ### `mapState` `mapGetters` → `computed`
 ```js
@@ -92,7 +95,6 @@ export default {
 }
 ```
 ### `mapActions` `mapMutations` → `methods`
-- 这个应该用得少点
 ```html
 <button @click="actA(n)"></button>
 <button @click="actB(n)"></button>
@@ -103,26 +105,40 @@ export default {
   ...,
   methods: {
     // 参数要在使用处指明
-    ...mapActions(['actA','actB'])
+    ...mapActions( {actA, actB} )
   }
 }
 ```
 
 ## 模块化 namespace
 ```js
-const nsA = {
+// {home}/src/store/nsA.js
+export default {
+  namespaced=true,
   actions,
   mutations,
   state,
   getter
 }
-const nsB = {}
+// {home}/src/store/nsB.js
+export default { ... }
 
+// {home}/src/store/index.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import nsA from './nsA'
+import nsB from './nsB'
+
+Vue.use(Vuex)
 export default new Vue.store({
   modules: {
     nsA,
     nsB
   }
 })
-```
 
+// then
+...mapState  ( 'ns',  [...] )
+...mapActions( 'ns',  {actA, actB} )
+
+```
