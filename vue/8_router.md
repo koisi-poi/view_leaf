@@ -1,6 +1,7 @@
 # Router
 - 背景: 实现 SPA(single page application)
 - 是编译行为
+- `/#/path` 不会发送给后端服务器
 - 切换路由时，不可见的组件会被销毁
 
 ## 基本使用
@@ -199,3 +200,9 @@ export default {
   beforeRouteLeave(to,from,next)
 }
 ```
+
+# histroy 与 hash `/#/`
+- router 的模式默认是 hash
+- `/#/path` 不会发送给后端服务器
+- history 模式下，路径以 `/` 开头，可能有兼容性问题
+  - 但是比较好看，大部分网站也都是这样的，需要http服务器配合实现
